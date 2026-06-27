@@ -63,4 +63,5 @@ build/
 *.tar.gz
 *.zip
 
-QUANTAXIS
+QUANTAXISgraphify-out/
+knowledge_base/

@@ -1,0 +1,1 @@
+{"nodes": [{"id": "dify_email_template_invite_zh", "label": "Dify Invite Member Template Chinese", "file_type": "code", "source_file": "generation_one/agent-dify-api/templates/invite_member_mail_template_zh-CN.html", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

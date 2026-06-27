@@ -297,11 +297,30 @@ class AlphaOrchestrator:
         self.sess.auth = HTTPBasicAuth(username, password)
         
         logger.info("Authenticating with WorldQuant Brain...")
-        response = self.sess.post('https://api.worldquantbrain.com/authentication')
-        logger.info(f"Authentication response status: {response.status_code}")
-        
-        if response.status_code != 201:
-            raise Exception(f"Authentication failed: {response.text}")
+        while True:
+            response = self.sess.post('https://api.worldquantbrain.com/authentication')
+            logger.info(f"Authentication response status: {response.status_code}")
+            
+            if response.status_code == 201:
+                break
+            elif response.status_code == 401 and response.headers.get("WWW-Authenticate") == "persona":
+                from urllib.parse import urljoin
+                auth_url = urljoin(response.url, response.headers["Location"])
+                logger.error(f"BIOMETRICS REQUIRED! Please open this link in your browser and complete the verification: {auth_url}")
+                
+                while True:
+                    logger.error("Waiting 60 seconds before checking if verification is complete...")
+                    time.sleep(60)
+                    verify_resp = self.sess.post(auth_url)
+                    if verify_resp.status_code == 201:
+                        logger.info("Biometrics verification successful!")
+                        break
+                break
+            elif response.status_code == 429 or "BIOMETRICS_THROTTLED" in response.text:
+                logger.warning("Authentication throttled (429). Sleeping for 5 minutes before retrying...")
+                time.sleep(300)
+            else:
+                raise Exception(f"Authentication failed: {response.status_code} - {response.text}")
         logger.info("Authentication successful")
 
     def load_submission_history(self):

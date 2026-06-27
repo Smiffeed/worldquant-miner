@@ -79,7 +79,7 @@ services:
           memory: 8G
           cpus: '2.0'
     restart: unless-stopped
-    command: ["python", "machine_miner.py", "--credentials", "/app/credential.txt", "--region", "USA", "--universe", "TOP3000"]
+    entrypoint: ["python", "machine_miner.py", "--credentials", "/app/credential.txt", "--region", "USA", "--universe", "TOP3000"]
     depends_on:
       - naive-ollma
     networks:
@@ -99,7 +99,7 @@ services:
     environment:
       - FLASK_ENV=production
       - PYTHONUNBUFFERED=1
-    command: ["python", "web_dashboard.py"]
+    entrypoint: ["python", "web_dashboard.py"]
     depends_on:
       - naive-ollma
     restart: unless-stopped

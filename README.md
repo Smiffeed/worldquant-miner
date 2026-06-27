@@ -1,5 +1,10 @@
 # WorldQuant Alpha Generator
 
+<AI_CONTEXT>
+**Target System:** WorldQuant Brain
+**Agent Objective:** Read `ROADMAP.md` and `WORKFLOW_JOURNAL.md` for the current state of this project. The system has been upgraded to support GraphRAG via Graphifyy and OpenRouter LLMs. **CRITICAL:** Do not use `machine_lib.py` blindly without handling the 429 BIOMETRICS_THROTTLED and 401 Persona captcha errors. See `.agents/AGENTS.md` for strict interaction rules.
+</AI_CONTEXT>
+
 This project is a collection of scripts that generate and submit alphas to the WorldQuant platform.
 
 ## 🎯 **Recommended Approach: Naive-Ollama**

@@ -1,0 +1,1 @@
+{"nodes": [{"id": "naive_ollama_docker_compose_prod", "label": "Production Docker Compose Configuration", "file_type": "code", "source_file": "generation_one/naive-ollama/docker-compose.prod.yml", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

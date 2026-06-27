@@ -1,0 +1,1 @@
+{"nodes": [{"id": "dify_tool_webscraper_tool", "label": "Dify Webscraper Implementation", "file_type": "code", "source_file": "generation_one/agent-dify-api/core/tools/builtin_tool/providers/webscraper/tools/webscraper.yaml", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

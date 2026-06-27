@@ -1,0 +1,1 @@
+{"nodes": [{"id": "agent_n8n_prometheus_config", "label": "Prometheus Configuration", "file_type": "code", "source_file": "generation_one/agent-n8n/monitoring/prometheus.yml", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

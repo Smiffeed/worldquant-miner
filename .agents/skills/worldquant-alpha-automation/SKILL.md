@@ -11,6 +11,10 @@ description: >
 
 # WorldQuant Alpha Automation Skill
 
+<AI_CONTEXT>
+**Primary Role:** Guide AI agents in utilizing the `worldquant-miner` architecture. Focus on generating, validating, and submitting `FASTEXPR` equations. Always refer to the GraphRAG knowledge base before guessing new alpha logic.
+</AI_CONTEXT>
+
 ## What This Skill Covers
 
 This skill helps you work with the `worldquant-miner` repository to achieve
@@ -256,6 +260,8 @@ git log upstream/master --oneline -10
 | Problem | Fix |
 |---|---|
 | `Authentication failed` | Check `credential.txt` format: `["email", "pass"]` |
+| `BIOMETRICS_THROTTLED` or `429` | Wait 15-30 minutes for IP ban to lift. Automated scripts now sleep 5 minutes automatically. |
+| `WWW-Authenticate: persona` | Captcha required. Check Docker logs for verification link, open it in a browser, and solve. |
 | `Ollama connection failed` | Run `ollama serve` or check Docker container is up |
 | `SIMULATION_LIMIT_EXCEEDED` | You hit 5,000/day cap — wait until next day |
 | `Unknown operator` in alpha | Check `generation_two/constants/operatorRAW.json` for valid ops |

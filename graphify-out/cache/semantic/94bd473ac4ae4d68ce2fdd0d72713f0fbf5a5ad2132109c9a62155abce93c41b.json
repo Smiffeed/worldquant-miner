@@ -1,0 +1,1 @@
+{"nodes": [{"id": "dify_email_template_delete_account", "label": "Dify Delete Account Code Template", "file_type": "code", "source_file": "generation_one/agent-dify-api/templates/delete_account_code_email_template_en-US.html", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

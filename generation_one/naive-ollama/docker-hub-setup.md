@@ -15,7 +15,7 @@ This guide will help you host the naive-ollama project on Docker Hub.
 Create `Dockerfile.prod` in the naive-ollama directory:
 
 ```dockerfile
-FROM nvidia/cuda:11.6.2-base-ubuntu20.04
+FROM nvidia/cuda:11.8.0-base-ubuntu22.04
 
 # Set environment variables for CUDA
 ENV DEBIAN_FRONTEND=noninteractive
@@ -28,8 +28,8 @@ WORKDIR /app
 
 # Install system dependencies including Python and CUDA tools
 RUN apt-get update && apt-get install -y \
-    python3.8 \
-    python3.8-dev \
+    python3 \
+    python3-dev \
     python3-pip \
     curl \
     wget \
@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Create symlink for python
-RUN ln -s /usr/bin/python3.8 /usr/bin/python
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Copy requirements and install Python dependencies
 COPY requirements.txt .

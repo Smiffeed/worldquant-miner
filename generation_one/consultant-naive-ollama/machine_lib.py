@@ -41,10 +41,28 @@ class WorldQuantBrain:
         logging.info("Authenticating with WorldQuant Brain...")
         self.session = requests.Session()
         self.session.auth = (self.username, self.password)
-        response = self.session.post('https://api.worldquantbrain.com/authentication')
-        
-        if response.status_code != 201:
-            raise Exception(f"Authentication failed: {response.text}")
+        while True:
+            response = self.session.post('https://api.worldquantbrain.com/authentication')
+            if response.status_code == 201:
+                break
+            elif response.status_code == 401 and response.headers.get("WWW-Authenticate") == "persona":
+                from urllib.parse import urljoin
+                auth_url = urljoin(response.url, response.headers["Location"])
+                logging.error(f"BIOMETRICS REQUIRED! Please open this link in your browser and complete the verification: {auth_url}")
+                
+                while True:
+                    logging.error("Waiting 60 seconds before checking if verification is complete...")
+                    time.sleep(60)
+                    verify_resp = self.session.post(auth_url)
+                    if verify_resp.status_code == 201:
+                        logging.info("Biometrics verification successful!")
+                        break
+                break # Break out of main auth loop since we are now authenticated
+            elif response.status_code == 429 or "BIOMETRICS_THROTTLED" in response.text:
+                logging.warning(f"Authentication throttled (429). Sleeping for 5 minutes before retrying...")
+                time.sleep(300)
+            else:
+                raise Exception(f"Authentication failed: {response.status_code} - {response.text}")
             
         self.session.headers.update({
             'Content-Type': 'application/json',

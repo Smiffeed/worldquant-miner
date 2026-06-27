@@ -1,0 +1,1 @@
+{"nodes": [{"id": "dify_tool_simple_code", "label": "Dify Simple Code Tool", "file_type": "code", "source_file": "generation_one/agent-dify-api/core/tools/builtin_tool/providers/code/tools/simple_code.yaml", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [], "hyperedges": []}

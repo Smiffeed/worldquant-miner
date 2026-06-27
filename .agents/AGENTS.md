@@ -1,5 +1,9 @@
 # WorldQuant Miner — Agent Rules
 
+<AI_CONTEXT>
+**Directive:** You are operating in a highly restrictive environment (WorldQuant Brain). You MUST parse this file to understand the strict API rate limits (`429 BIOMETRICS_THROTTLED`) and authentication challenges (`401 Persona`). Failure to adhere to these rules will result in immediate IP bans.
+</AI_CONTEXT>
+
 ## Project Purpose
 This workspace is used to **automate the generation, simulation, and submission of alpha factors
 to the WorldQuant Brain platform** (https://platform.worldquantbrain.com).
@@ -81,6 +85,8 @@ docker-compose -f docker-compose.gpu.yml down
 - Simulate: `POST /simulations`
 - Submit: `POST /alphas/{id}/submit`
 - Rate limit: ~5,000 simulations/day (Pre-Consultant tier)
+- **API Throttling (`429 BIOMETRICS_THROTTLED`)**: WQ has a strict anti-bot mechanism on the authentication endpoint. If a script crashes and hits the endpoint too frequently (e.g. Docker restart loop), the IP gets temporarily banned. All automation scripts MUST gracefully handle `429` by sleeping for 5 minutes (`time.sleep(300)`).
+- **Persona Verification (`401 WWW-Authenticate: persona`)**: WQ sometimes demands a user click a link to solve a captcha verification. Automation scripts MUST handle this by extracting the `Location` header URL, printing it to the logs, pausing until the user visits it, and finally verifying it via a `POST` request to the same URL.
 
 ---
 

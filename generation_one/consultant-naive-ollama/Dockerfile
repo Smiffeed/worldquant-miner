@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.6.2-base-ubuntu20.04
+FROM nvidia/cuda:12.4.1-base-ubuntu22.04
 
 # Set environment variables for CUDA
 ENV DEBIAN_FRONTEND=noninteractive
@@ -9,19 +9,21 @@ ENV LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies including Python and CUDA tools
+# Install system dependencies including Python, CUDA tools, and zstd (required by Ollama installer)
 RUN apt-get update && apt-get install -y \
-    python3.8 \
-    python3.8-dev \
+    python3 \
+    python3-dev \
     python3-pip \
     curl \
     wget \
     git \
     build-essential \
+    zstd \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Create symlink for python
-RUN ln -s /usr/bin/python3.8 /usr/bin/python
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Copy requirements and install Python dependencies
 COPY requirements.txt .

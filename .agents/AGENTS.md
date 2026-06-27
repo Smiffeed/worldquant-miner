@@ -138,3 +138,9 @@ ollama serve
 - Never log passwords or raw credential content
 - Do not add `shell=True` to subprocess calls with user-controlled input
 - Treat `pickle` files as untrusted — do not load external `.pkl` files
+
+---
+
+## AI Agent Interaction Rules
+- **Note every problem and solution:** Always maintain a log of problems faced and solutions applied in the `WORKFLOW_JOURNAL.md` file located at the repository root.
+- **Pushback on nonsensical prompts:** If the user requests an action or provides a prompt that does not make sense, seems counterproductive, or contradicts best practices, you MUST stop, push back, and ask for clarification before proceeding.

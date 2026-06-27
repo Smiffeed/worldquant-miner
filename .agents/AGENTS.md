@@ -149,4 +149,8 @@ ollama serve
 
 ## AI Agent Interaction Rules
 - **Note every problem and solution:** Always maintain a log of problems faced and solutions applied in the `WORKFLOW_JOURNAL.md` file located at the repository root.
+- **Proactive Git Commits:** After successfully completing a bug fix, feature, or function—or when reaching a logical checkpoint during complex work—you MUST proactively propose a Git commit. Do not wait for the user to ask. 
+  1. Tell the user what you plan to commit using **Conventional Commits format** (e.g., `feat: add Alpha orchestration`, `fix: resolve 429 API loop`, `chore: update docs`).
+  2. Ask the user: "Would you like me to commit and push this checkpoint now?"
+  3. If they answer yes, execute the `git add`, `git commit -m "..."`, and `git push` commands.
 - **Pushback on nonsensical prompts:** If the user requests an action or provides a prompt that does not make sense, seems counterproductive, or contradicts best practices, you MUST stop, push back, and ask for clarification before proceeding.
